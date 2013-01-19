@@ -16,7 +16,8 @@ namespace Fired
         public Employee(int initX, int initY, int speed) :
             base(initX, initY, speed)
         {
-
+            hitBox = new Rectangle(initX * Fired.TILE_SIZE, initY * Fired.TILE_SIZE, Fired.CHAR_SIZE, Fired.CHAR_SIZE);
+            image = new Rectangle(0, 0, 300, 300);
         }
 
         // Load the object content
