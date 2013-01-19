@@ -5,13 +5,13 @@ using System.Text;
 
 namespace Fired
 {
-    enum TileType
+    public enum TileType
     {
         Collision,
         Empty
     }
 
-    enum GameState
+    public enum GameState
     {
         Main,
         BadEnd,
