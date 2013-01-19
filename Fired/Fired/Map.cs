@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
@@ -14,22 +14,26 @@ namespace Fired
 {
     class Map
     {
-        public const int MAP_WIDTH = 20;
-        public const int MAP_HEIGHT = 15;
+        public const int MAP_COLS = 20;
+        public const int MAP_ROWS = 15;
 
         int level;
         Tile[,] tiles;
         Texture2D tileset;
         bool levelFinished;
+        Hero hero;
+        List<Employee> employees;
+        List<Swat> swat;
 
         public Map()
         {
             level = 0;
-            tiles = new Tile[MAP_WIDTH, MAP_HEIGHT];
-            for (int i = 0; i < MAP_WIDTH; ++i)
-                for (int j = 0; j < MAP_HEIGHT; ++j)
+            tiles = new Tile[MAP_ROWS, MAP_COLS];
+            for (int i = 0; i < MAP_ROWS; ++i)
+                for (int j = 0; j < MAP_COLS; ++j)
                 {
                     tiles[i, j] = new Tile();
+                    tiles[i, j].location = new Rectangle(j * Fired.TILE_SIZE, i * Fired.TILE_SIZE, Fired.TILE_SIZE, Fired.TILE_SIZE);
                 }
             levelFinished = true;
         }
@@ -50,8 +54,8 @@ namespace Fired
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            for (int i = 0; i < MAP_WIDTH; ++i)
-                for (int j = 0; j < MAP_HEIGHT; ++j)
+            for (int i = 0; i < MAP_ROWS; ++i)
+                for (int j = 0; j < MAP_COLS; ++j)
                 {
                     spriteBatch.Draw(tileset, tiles[i, j].location, tiles[i, j].imageSource, Color.White);
                 }
@@ -62,19 +66,39 @@ namespace Fired
         {
             level++;
 
-            //Make file name
+            //Make file name and open file
             string fileName = "level" + level.ToString() + ".txt";
+            StreamReader sr = new StreamReader(fileName);
+            string [] line;
 
-            //Clear the map
-            for (int i = 0; i < MAP_WIDTH; ++i)
-                for (int j = 0; j < MAP_HEIGHT; ++j)
+            //Get tiles from file
+            for (int i = 0; i < MAP_ROWS; ++i)
+            {
+                //Read a line in and split each character at the space
+                line = sr.ReadLine().Split(' '); 
+                for (int j = 0; j < MAP_COLS; ++j)
                 {
-                    tiles[i, j].type = TileType.Empty;
-                    tiles[i, j].imageSource = new Rectangle(0, 0, Fired.SOURCE_SIZE, Fired.SOURCE_SIZE);
-                    tiles[i, j].location = new Rectangle(i * Fired.TILE_SIZE, j * Fired.TILE_SIZE, Fired.TILE_SIZE, Fired.TILE_SIZE);
+                    if (line[j] == "W")
+                    {
+                        tiles[i, j].type = TileType.Collision;
+                        tiles[i, j].imageSource = new Rectangle(Fired.SOURCE_SIZE, 0, Fired.SOURCE_SIZE, Fired.SOURCE_SIZE);
+                    }
+                    else if (line[j] == ".")
+                    {
+                        tiles[i, j].type = TileType.Empty;
+                        tiles[i, j].imageSource = new Rectangle(0, 0, Fired.SOURCE_SIZE, Fired.SOURCE_SIZE);
+                    }
+                    else
+                    {
+                        tiles[i, j].type = TileType.Collision;
+                        tiles[i, j].imageSource = new Rectangle(0, 0, Fired.SOURCE_SIZE, Fired.SOURCE_SIZE);
+                    }
                 }
+            }
 
-            //Load from file
+            //Add player
+
+            sr.Close();
         }
 
         public void Reset()
