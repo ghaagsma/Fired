@@ -50,6 +50,8 @@ namespace Fired
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             font = Content.Load<SpriteFont>("Font");
+
+            map.LoadContent(Content);
         }
 
         protected override void Update(GameTime gameTime)
