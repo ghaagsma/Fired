@@ -19,7 +19,7 @@ namespace Fired
 
         int level;
         Tile[,] tiles;
-        Texture2D tileset;
+        Texture2D tileset, playerImage, guardImage, employeeImage, swatImage;
         bool levelFinished;
         Hero hero;
         List<Employee> employees;
@@ -48,6 +48,8 @@ namespace Fired
         public void LoadContent(ContentManager content)
         {
             tileset = content.Load<Texture2D>("tiles");
+            playerImage = content.Load<Texture2D>("manWithKnife");
+            employeeImage = content.Load<Texture2D>("Employee");
         }
 
         public void Update(ContentManager content)
@@ -72,13 +74,16 @@ namespace Fired
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            if (levelFinished)
+                return;
+
             for (int i = 0; i < MAP_ROWS; ++i)
                 for (int j = 0; j < MAP_COLS; ++j)
                 {
                     spriteBatch.Draw(tileset, tiles[i, j].location, tiles[i, j].imageSource, Color.White);
                 }
 
-            //hero.draw(spriteBatch);
+            hero.draw(spriteBatch);
 
             for (int i = 0; i < employees.Count; ++i)
                 employees[i].draw(spriteBatch);
@@ -118,6 +123,7 @@ namespace Fired
                     {
                         tiles[i, j].type = TileType.Up;
                         tiles[i, j].imageSource = new Rectangle(Fired.SOURCE_SIZE * 2, 0, Fired.SOURCE_SIZE, Fired.SOURCE_SIZE);
+                        stairs = new Rectangle(j * Fired.TILE_SIZE, i * Fired.TILE_SIZE, Fired.TILE_SIZE, Fired.TILE_SIZE);
                     }
                 }
             }
