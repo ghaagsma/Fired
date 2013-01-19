@@ -20,7 +20,7 @@ namespace Fired
         int level;
         Tile[,] tiles;
         Texture2D tileset;
-        bool done;
+        bool levelFinished;
 
         public Map()
         {
@@ -31,7 +31,7 @@ namespace Fired
                 {
                     tiles[i, j] = new Tile();
                 }
-            done = true;
+            levelFinished = true;
         }
 
         public void LoadContent(ContentManager content)
@@ -41,9 +41,9 @@ namespace Fired
 
         public void Update()
         {
-            if (done)
+            if (levelFinished)
             {
-                done = false;
+                levelFinished = false;
                 LoadNextLevel();
             }
         }
@@ -61,6 +61,11 @@ namespace Fired
         void LoadNextLevel()
         {
             level++;
+
+            //Make file name
+            string fileName = "level" + level.ToString() + ".txt";
+
+            //Clear the map
             for (int i = 0; i < MAP_WIDTH; ++i)
                 for (int j = 0; j < MAP_HEIGHT; ++j)
                 {
@@ -68,11 +73,14 @@ namespace Fired
                     tiles[i, j].imageSource = new Rectangle(0, 0, Fired.SOURCE_SIZE, Fired.SOURCE_SIZE);
                     tiles[i, j].location = new Rectangle(i * Fired.TILE_SIZE, j * Fired.TILE_SIZE, Fired.TILE_SIZE, Fired.TILE_SIZE);
                 }
+
+            //Load from file
         }
 
         public void Reset()
         {
             level = 0;
+            levelFinished = true;
         }
 
         public bool CheckGameLose()
