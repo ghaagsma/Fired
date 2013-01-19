@@ -132,7 +132,7 @@ namespace Fired
             sr.ReadLine();
             line = sr.ReadLine().Split(' ');
             hero = new Hero(int.Parse(line[0]), int.Parse(line[1]), int.Parse(line[2]));
-            hero.load(content);
+            hero.load(content, playerImage);
 
             int count;
             //Add employee
@@ -143,10 +143,10 @@ namespace Fired
             {            
                 line = sr.ReadLine().Split(' ');
                 e = new Employee(int.Parse(line[0]), int.Parse(line[1]), int.Parse(line[2]));
-                e.load(content);
+                e.load(content, employeeImage);
                 employees.Add(e);
             }
-
+            /*
             //Add guards
             SecurityGuard s;
             line = sr.ReadLine().Split(' ');
@@ -169,7 +169,7 @@ namespace Fired
                 sw = new Swat(int.Parse(line[0]), int.Parse(line[1]), int.Parse(line[2]));
                 sw.load(content);
                 swat.Add(sw);
-            }
+            }*/
             sr.Close();
         }
 
