@@ -66,7 +66,7 @@ namespace Fired
             //update swat guard
 
             if (employees.Count == 0 && hero.getHitBox().Intersects(stairs))
-                levelFinished = true;
+                levelFinished = false;
                 
         }
 
@@ -78,7 +78,8 @@ namespace Fired
                     spriteBatch.Draw(tileset, tiles[i, j].location, tiles[i, j].imageSource, Color.White);
                 }
 
-            hero.draw(spriteBatch);
+            //hero.draw(spriteBatch);
+
             for (int i = 0; i < employees.Count; ++i)
                 employees[i].draw(spriteBatch);
         }
