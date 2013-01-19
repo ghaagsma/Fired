@@ -13,6 +13,10 @@ namespace Fired
 {
     class Employee : Character
     {
+        public Employee(int x, int y) :
+            base(x, y)
+        {
 
+        }
     }
 }
