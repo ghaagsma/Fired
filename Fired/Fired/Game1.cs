@@ -29,16 +29,18 @@ namespace Fired
         GameState gameState;
         KeyboardState keyboard;
         SpriteFont font;
-        bool menuSelect;
+        bool selected;
+        Map map;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            gameState = GameState.GoodEnd;
-            menuSelect = false;
+            gameState = GameState.Main;
+            selected = false;
             graphics.PreferredBackBufferWidth = SCREEN_WIDTH;
             graphics.PreferredBackBufferHeight = SCREEN_HEIGHT;
+            map = new Map();
         }
 
         protected override void LoadContent()
@@ -50,26 +52,35 @@ namespace Fired
 
         protected override void Update(GameTime gameTime)
         {
-            keyboard = Keyboard.GetState();
-
             if (gameState == GameState.Main)
             {
-                if (keyboard.IsKeyDown(Keys.Left) || keyboard.IsKeyDown(Keys.Right))
+                if (keyboard.IsKeyDown(Keys.Enter) && Keyboard.GetState().IsKeyUp(Keys.Enter))
                 {
-                    menuSelect = !menuSelect;
+                    if (selected)
+                        gameState = GameState.Game;
+                    else
+                        gameState = GameState.BadEnd;
+                }
+                if ((keyboard.IsKeyDown(Keys.Left) && Keyboard.GetState().IsKeyUp(Keys.Left)) || (keyboard.IsKeyDown(Keys.Right) && Keyboard.GetState().IsKeyUp(Keys.Right)))
+                {
+                    selected = !selected;
                 }
 
             }
             else if (gameState == GameState.Game)
             {
+                //DO GAME STUFF HERE
             }
             else if (gameState == GameState.BadEnd || gameState == GameState.GoodEnd)
             {
-                if (keyboard.IsKeyDown(Keys.Enter))
+                if (keyboard.IsKeyDown(Keys.Enter) && Keyboard.GetState().IsKeyUp(Keys.Enter))
                 {
                     gameState = GameState.Main;
+                    selected = false;
                 }
             }
+
+            keyboard = Keyboard.GetState();
 
             base.Update(gameTime);
         }
@@ -81,21 +92,32 @@ namespace Fired
             if (gameState == GameState.Main)
             {
                 GraphicsDevice.Clear(Color.CornflowerBlue);
-                spriteBatch.DrawString(font, FIRED, new Vector2((SCREEN_WIDTH / 2) - (font.MeasureString(FIRED).X / 2), 50), Color.DarkRed);
-                spriteBatch.DrawString(font, ACCEPT, new Vector2((SCREEN_WIDTH / 4) - (font.MeasureString(ACCEPT).X / 2), SCREEN_HEIGHT / 2), Color.Ivory);
-                spriteBatch.DrawString(font, DECLINE, new Vector2((SCREEN_WIDTH * 3 / 4) - (font.MeasureString(DECLINE).X / 2), SCREEN_HEIGHT / 2), Color.Ivory);
+                spriteBatch.DrawString(font, FIRED, new Vector2((SCREEN_WIDTH / 2) - (font.MeasureString(FIRED).X / 2), 50), Color.Ivory);
+                if (!selected)
+                {
+                    spriteBatch.DrawString(font, ACCEPT, new Vector2((SCREEN_WIDTH / 4) - (font.MeasureString(ACCEPT).X / 2), SCREEN_HEIGHT / 2), Color.DarkRed);
+                    spriteBatch.DrawString(font, DECLINE, new Vector2((SCREEN_WIDTH * 3 / 4) - (font.MeasureString(DECLINE).X / 2), SCREEN_HEIGHT / 2), Color.Ivory);
+                }
+                else
+                {
+                    spriteBatch.DrawString(font, ACCEPT, new Vector2((SCREEN_WIDTH / 4) - (font.MeasureString(ACCEPT).X / 2), SCREEN_HEIGHT / 2), Color.Ivory);
+                    spriteBatch.DrawString(font, DECLINE, new Vector2((SCREEN_WIDTH * 3 / 4) - (font.MeasureString(DECLINE).X / 2), SCREEN_HEIGHT / 2), Color.DarkRed);
+                }
             }
             else if (gameState == GameState.Game)
             {
                 GraphicsDevice.Clear(Color.MediumPurple);
+                map.Draw(spriteBatch);
             }
             else if (gameState == GameState.BadEnd)
             {
                 GraphicsDevice.Clear(Color.IndianRed);
+                spriteBatch.DrawString(font, BAD_END, new Vector2((SCREEN_WIDTH / 2) - (font.MeasureString(BAD_END).X / 2), SCREEN_HEIGHT / 2), Color.Ivory);
             }
             else if (gameState == GameState.GoodEnd)
             {
                 GraphicsDevice.Clear(Color.LawnGreen);
+                spriteBatch.DrawString(font, GOOD_END, new Vector2((SCREEN_WIDTH / 2) - (font.MeasureString(GOOD_END).X / 2), SCREEN_HEIGHT / 2), Color.Ivory);
             }
 
             base.Draw(gameTime);

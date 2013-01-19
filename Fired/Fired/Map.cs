@@ -23,7 +23,14 @@ namespace Fired
         public const int TILE_SIZE = 40;
         public const int MAP_WIDTH = 45;
         public const int MAP_HEIGHT = 30;
+
+        int level;
         Tile[,] tiles;
+
+        public Map()
+        {
+            level = 0;
+        }
 
         public void LoadContent(ContentManager content)
         {
@@ -33,8 +40,22 @@ namespace Fired
         {
         }
 
-        public void Draw()
+        public void Draw(SpriteBatch spriteBatch)
         {
+        }
+
+        public void LoadNextLevel()
+        {
+        }
+
+        public void Reset()
+        {
+            level = 0;
+        }
+
+        public bool CheckGameEnd()
+        {
+            return false;
         }
     }
 }
