@@ -25,6 +25,7 @@ namespace Fired
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         GameState gameState;
+        KeyboardState keyboard;
 
         public Game1()
         {
@@ -75,8 +76,7 @@ namespace Fired
         protected override void Update(GameTime gameTime)
         {
             // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
+            keyboard = Keyboard.GetState();
 
             // TODO: Add your update logic here
             if (gameState == GameState.Main)
@@ -87,31 +87,29 @@ namespace Fired
             }
             else if (gameState == GameState.BadEnd || gameState == GameState.GoodEnd)
             {
+                //if ();
             }
 
             base.Update(gameTime);
         }
 
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // TODO: Add your drawing code here
             if (gameState == GameState.Main)
             {
+                GraphicsDevice.Clear(Color.CornflowerBlue);
             }
             else if (gameState == GameState.Game)
             {
+                GraphicsDevice.Clear(Color.MediumPurple);
             }
             else if (gameState == GameState.BadEnd)
             {
+                GraphicsDevice.Clear(Color.IndianRed);
             }
             else if (gameState == GameState.GoodEnd)
             {
+                GraphicsDevice.Clear(Color.LawnGreen);
             }
 
             base.Draw(gameTime);

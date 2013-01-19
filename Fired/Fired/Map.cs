@@ -20,9 +20,9 @@ namespace Fired
 
     class Map
     {
-        const int TILE_SIZE = 40;
-        const int MAP_WIDTH = 45;
-        const int MAP_HEIGHT = 30;
+        static const int TILE_SIZE = 40;
+        static const int MAP_WIDTH = 45;
+        static const int MAP_HEIGHT = 30;
         Tile[,] tiles;
 
         public void LoadContent(ContentManager content)
