@@ -38,7 +38,7 @@ namespace Fired
         }
 
         // Update object
-        public virtual void update()
+        public virtual void update(Tile[,] map)
         {
 
         }
