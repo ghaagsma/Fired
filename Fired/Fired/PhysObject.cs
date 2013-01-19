@@ -13,14 +13,17 @@ namespace Fired
 {
     class PhysObject
     {
-        Vector2 position;
-        Vector2 velocity;
-        Rectangle hitBox;
+        protected Texture2D texture;
+        protected Vector2 position;
+        protected Vector2 velocity;
+        protected Rectangle hitBox;
 
+        // Load the object content
         public void load(ContentManager content)
         {
 
         }
+
 
         public void update()
         {
