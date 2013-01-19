@@ -31,7 +31,7 @@ namespace Fired
         }
 
         // Update object
-        public override void update(GraphicsDeviceManager graphics, Tile [,] map)
+        public override void update(Tile [,] map)
         {
             if (!exists)
                 return;
