@@ -36,20 +36,24 @@ namespace Fired
                     tiles[i, j].location = new Rectangle(j * Fired.TILE_SIZE, i * Fired.TILE_SIZE, Fired.TILE_SIZE, Fired.TILE_SIZE);
                 }
             levelFinished = true;
+            hero = new Hero(0, 0, 3);
         }
 
         public void LoadContent(ContentManager content)
         {
             tileset = content.Load<Texture2D>("tiles");
+            hero.load(content);
         }
 
-        public void Update()
+        public void Update(ContentManager content)
         {
             if (levelFinished)
             {
                 levelFinished = false;
-                LoadNextLevel();
+                LoadNextLevel(content);
             }
+
+            hero.update(tiles);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -59,10 +63,12 @@ namespace Fired
                 {
                     spriteBatch.Draw(tileset, tiles[i, j].location, tiles[i, j].imageSource, Color.White);
                 }
+
+            hero.draw(spriteBatch);
         }
 
         //Change to the next level
-        void LoadNextLevel()
+        void LoadNextLevel(ContentManager content)
         {
             level++;
 
@@ -97,7 +103,10 @@ namespace Fired
             }
 
             //Add player
-
+            sr.ReadLine();
+            line = sr.ReadLine().Split(' ');
+            hero = new Hero(int.Parse(line[0]), int.Parse(line[1]), int.Parse(line[2]));
+            hero.load(content);
             sr.Close();
         }
 

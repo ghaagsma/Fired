@@ -18,6 +18,8 @@ namespace Fired
     {
         public const int SOURCE_SIZE = 100;
         public const int TILE_SIZE = 40;
+        public const int CHAR_SIZE = 30;
+
         const int SCREEN_WIDTH = 800;
         const int SCREEN_HEIGHT = 600;
         const string GOOD_END = "The End!";
@@ -73,7 +75,7 @@ namespace Fired
             }
             else if (gameState == GameState.Game)
             {
-                map.Update();
+                map.Update(Content);
                 if (map.CheckGameLose())
                     gameState = GameState.BadEnd;
                 if (map.CheckGameWin())

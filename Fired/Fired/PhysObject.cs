@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -47,7 +47,7 @@ namespace Fired
         public virtual void draw(SpriteBatch spriteBatch)
         {
             if (exists)
-                spriteBatch.Draw(texture, position, image, Color.White);
+                spriteBatch.Draw(texture, hitBox, image, Color.White);
         }
 
         // Handle collisions with map tiles

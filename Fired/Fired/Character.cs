@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -129,8 +129,8 @@ namespace Fired
             else { }
 
             //Set locations
-            hitBox.X = (int)finalLocation.X;
-            hitBox.Y = (int)finalLocation.Y;
+            hitBox.X = (int)position.X;
+            hitBox.Y = (int)position.Y;
         }
     }
 }
