@@ -15,7 +15,7 @@ namespace Fired
     class Map
     {
         public const int MAP_WIDTH = 45;
-        public const int MAP_HEIGHT = 30;
+        public const int MAP_HEIGHT = 35;
 
         int level;
         Tile[,] tiles;
