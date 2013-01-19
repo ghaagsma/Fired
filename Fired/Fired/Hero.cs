@@ -18,23 +18,18 @@ namespace Fired
         public Hero(int x, int y) :
             base(x, y)
         {
-
+            hitBox = new Rectangle();
+            image = new Rectangle(0, 0, 300, 300);
         }
 
         // Load the object content
         public override void load(ContentManager content)
         {
-
+            texture = content.Load<Texture2D>("manWithKnife");
         }
 
         // Update object
         public override void update()
-        {
-
-        }
-
-        // Draw object
-        public override void draw()
         {
 
         }

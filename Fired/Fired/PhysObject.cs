@@ -13,10 +13,13 @@ namespace Fired
 {
     abstract class PhysObject
     {
-        protected Texture2D texture;
+        protected Texture2D texture;    // Image of this object
+        protected Rectangle image;      // Where in the source image to grab from
         protected Vector2 position;
         protected Vector2 velocity;
-        protected Rectangle hitBox;
+        protected Rectangle hitBox;     // Collision box
+
+        protected bool exists;          // Whether this object exists or has been destroyed
 
         public PhysObject(int x, int y)
         {
@@ -24,6 +27,8 @@ namespace Fired
             position.Y = y * Map.TILE_SIZE;
             velocity.X = 0;
             velocity.Y = 0;
+
+            exists = true;
         }
 
         // Load the object content
@@ -39,9 +44,10 @@ namespace Fired
         }
 
         // Draw object
-        public virtual void draw()
+        public virtual void draw(SpriteBatch spriteBatch)
         {
-
+            if (exists)
+                spriteBatch.Draw(texture, position, image, Color.White);
         }
 
         // Handle collisions with map tiles
