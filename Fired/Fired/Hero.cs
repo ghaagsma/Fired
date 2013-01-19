@@ -13,13 +13,15 @@ namespace Fired
 {
     class Hero : Character
     {
-
+        protected KeyboardState oldState;
+        protected KeyboardState newState;
 
         public Hero(int x, int y) :
             base(x, y)
         {
             hitBox = new Rectangle();
             image = new Rectangle(0, 0, 300, 300);
+            oldState = Keyboard.GetState();
         }
 
         // Load the object content
@@ -29,9 +31,25 @@ namespace Fired
         }
 
         // Update object
-        public override void update()
+        public override void update(GraphicsDeviceManager graphics, Tile [,] map)
         {
+            if (!exists)
+                return;
 
+            newState = Keyboard.GetState();
+            velocity.X = 0;
+            velocity.Y = 0;
+
+            if(newState.IsKeyDown(Keys.Up))
+                velocity.Y -= 5;
+            if (newState.IsKeyDown(Keys.Right))
+                velocity.X += 5;
+            if (newState.IsKeyDown(Keys.Down))
+                velocity.Y += 5;
+            if (newState.IsKeyDown(Keys.Left))
+                velocity.X -= 5;
+
+            mapCollide(map);
         }
 
         // Handle collisions with map tiles

@@ -51,7 +51,7 @@ namespace Fired
         }
 
         // Handle collisions with map tiles
-        public virtual void mapCollide(Tile[,] tiles)
+        public virtual void mapCollide(Tile[,] map)
         {
 
         }
