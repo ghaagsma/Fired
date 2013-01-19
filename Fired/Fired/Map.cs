@@ -24,6 +24,8 @@ namespace Fired
         Hero hero;
         List<Employee> employees;
         List<Swat> swat;
+        List<SecurityGuard> guard;
+        Rectangle stairs;
 
         public Map()
         {
@@ -37,12 +39,15 @@ namespace Fired
                 }
             levelFinished = true;
             hero = new Hero(0, 0, 3);
+            employees = new List<Employee>();
+            swat = new List<Swat>();
+            guard = new List<SecurityGuard>();
+            stairs = new Rectangle();
         }
 
         public void LoadContent(ContentManager content)
         {
             tileset = content.Load<Texture2D>("tiles");
-            hero.load(content);
         }
 
         public void Update(ContentManager content)
@@ -54,6 +59,15 @@ namespace Fired
             }
 
             hero.update(tiles);
+
+            for (int i = 0; i < employees.Count; ++i)
+                employees[i].update(tiles);
+
+            //update swat guard
+
+            if (employees.Count == 0 && hero.getHitBox().Intersects(stairs))
+                levelFinished = true;
+                
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -65,12 +79,17 @@ namespace Fired
                 }
 
             hero.draw(spriteBatch);
+            for (int i = 0; i < employees.Count; ++i)
+                employees[i].draw(spriteBatch);
         }
 
         //Change to the next level
         void LoadNextLevel(ContentManager content)
         {
             level++;
+            employees.Clear();
+            swat.Clear();
+            guard.Clear();
 
             //Make file name and open file
             string fileName = "level" + level.ToString() + ".txt";
@@ -107,6 +126,43 @@ namespace Fired
             line = sr.ReadLine().Split(' ');
             hero = new Hero(int.Parse(line[0]), int.Parse(line[1]), int.Parse(line[2]));
             hero.load(content);
+
+            int count;
+            //Add employee
+            Employee e;
+            line = sr.ReadLine().Split(' ');
+            count = int.Parse(line[2]);
+            for(int i = 0; i < count; ++i)
+            {            
+                line = sr.ReadLine().Split(' ');
+                e = new Employee(int.Parse(line[0]), int.Parse(line[1]), int.Parse(line[2]));
+                e.load(content);
+                employees.Add(e);
+            }
+
+            //Add guards
+            SecurityGuard s;
+            line = sr.ReadLine().Split(' ');
+            count = int.Parse(line[2]);
+            for (int i = 0; i < count; ++i)
+            {
+                line = sr.ReadLine().Split(' ');
+                s = new SecurityGuard(int.Parse(line[0]), int.Parse(line[1]), int.Parse(line[2]), int.Parse(line[3]), int.Parse(line[4]));
+                s.load(content);
+                guard.Add(s);
+            }
+
+            //Add swat
+            Swat sw;
+            line = sr.ReadLine().Split(' ');
+            count = int.Parse(line[2]);
+            for (int i = 0; i < count; ++i)
+            {
+                line = sr.ReadLine().Split(' ');
+                sw = new Swat(int.Parse(line[0]), int.Parse(line[1]), int.Parse(line[2]));
+                sw.load(content);
+                swat.Add(sw);
+            }
             sr.Close();
         }
 
