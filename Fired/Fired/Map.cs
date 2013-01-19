@@ -12,15 +12,8 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Fired
 {
-    struct Tile
-    {
-        public TileType type;
-        public Rectangle location, imageSource;
-    }
-
     class Map
     {
-        public const int TILE_SIZE = 40;
         public const int MAP_WIDTH = 45;
         public const int MAP_HEIGHT = 30;
 
@@ -53,7 +46,12 @@ namespace Fired
             level = 0;
         }
 
-        public bool CheckGameEnd()
+        public bool CheckGameLose()
+        {
+            return false;
+        }
+
+        public bool CheckGameWin()
         {
             return false;
         }

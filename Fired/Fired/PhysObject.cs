@@ -23,8 +23,8 @@ namespace Fired
 
         public PhysObject(int x, int y)
         {
-            position.X = x * Map.TILE_SIZE;
-            position.Y = y * Map.TILE_SIZE;
+            position.X = x * Fired.TILE_SIZE;
+            position.Y = y * Fired.TILE_SIZE;
             velocity.X = 0;
             velocity.Y = 0;
 

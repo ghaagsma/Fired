@@ -14,8 +14,10 @@ namespace Fired
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-    public class Game1 : Microsoft.Xna.Framework.Game
+    public class Fired : Microsoft.Xna.Framework.Game
     {
+        public const int SOURCE_SIZE = 100;
+        public const int TILE_SIZE = 40;
         const int SCREEN_WIDTH = 800;
         const int SCREEN_HEIGHT = 600;
         const string GOOD_END = "The End!";
@@ -32,7 +34,7 @@ namespace Fired
         bool selected;
         Map map;
 
-        public Game1()
+        public Fired()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -69,7 +71,11 @@ namespace Fired
             }
             else if (gameState == GameState.Game)
             {
-                //DO GAME STUFF HERE
+                map.Update();
+                if (map.CheckGameLose())
+                    gameState = GameState.BadEnd;
+                if (map.CheckGameWin())
+                    gameState = GameState.GoodEnd;
             }
             else if (gameState == GameState.BadEnd || gameState == GameState.GoodEnd)
             {
