@@ -13,8 +13,8 @@ namespace Fired
 {
     class Employee : Character
     {
-        public Employee(int x, int y) :
-            base(x, y)
+        public Employee(int x, int y, int speed) :
+            base(x, y, speed)
         {
 
         }
@@ -26,10 +26,12 @@ namespace Fired
         }
 
         // Update object
-        public override void update(Tile[,] map)
+        public override void update(Tile[,] map, Vector2 heroPosition)
         {
             if (!exists)
                 return;
+
+
         }
 
         // Handle collisions with other objects in map

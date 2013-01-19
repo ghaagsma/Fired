@@ -13,8 +13,8 @@ namespace Fired
 {
     class Swat : Character
     {
-        public Swat(int x, int y) :
-            base(x, y)
+        public Swat(int x, int y, int speed) :
+            base(x, y, speed)
         {
 
         }

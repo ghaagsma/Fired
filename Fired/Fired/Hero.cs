@@ -16,8 +16,8 @@ namespace Fired
         protected KeyboardState oldState;
         protected KeyboardState newState;
 
-        public Hero(int x, int y) :
-            base(x, y)
+        public Hero(int x, int y, int speed) :
+            base(x, y, speed)
         {
             hitBox = new Rectangle();
             image = new Rectangle(0, 0, 300, 300);
@@ -41,13 +41,17 @@ namespace Fired
             velocity.Y = 0;
 
             if(newState.IsKeyDown(Keys.Up))
-                velocity.Y -= 5;
+                velocity.Y -= 1;
             if (newState.IsKeyDown(Keys.Right))
-                velocity.X += 5;
+                velocity.X += 1;
             if (newState.IsKeyDown(Keys.Down))
-                velocity.Y += 5;
+                velocity.Y += 1;
             if (newState.IsKeyDown(Keys.Left))
-                velocity.X -= 5;
+                velocity.X -= 1;
+
+            velocity.Normalize();
+            velocity.X *= speed;
+            velocity.Y *= speed;
 
             mapCollide(map);
         }

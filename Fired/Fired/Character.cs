@@ -13,10 +13,12 @@ namespace Fired
 {
     abstract class Character : PhysObject
     {
-        public Character(int x, int y) :
+        protected int speed;
+
+        public Character(int x, int y, int speed_) :
             base(x,y)
         {
-            
+            speed = speed_;
         }        
         
         //Calculate the current tile that position x,y intersects
