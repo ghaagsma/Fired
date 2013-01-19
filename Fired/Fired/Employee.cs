@@ -20,9 +20,9 @@ namespace Fired
         }
 
         // Load the object content
-        public override void load(ContentManager content)
+        public override void load(ContentManager content, Texture2D texture_)
         {
-            texture = content.Load<Texture2D>("Employee");
+            texture = texture_;
         }
 
         // Update object
