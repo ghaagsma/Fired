@@ -5,8 +5,12 @@ using System.Text;
 
 namespace Fired
 {
-    class Character : PhysObject
+    abstract class Character : PhysObject
     {
-
+        public Character(int x, int y) :
+            base(x,y)
+        {
+            
+        }
     }
 }

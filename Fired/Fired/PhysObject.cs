@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Fired
 {
-    class PhysObject
+    abstract class PhysObject
     {
         protected Texture2D texture;
         protected Vector2 position;
@@ -20,40 +20,50 @@ namespace Fired
 
         public PhysObject(int x, int y)
         {
-            position.X = x;
-            position.Y = y;
+            position.X = x * Map.TILE_SIZE;
+            position.Y = y * Map.TILE_SIZE;
             velocity.X = 0;
             velocity.Y = 0;
         }
 
         // Load the object content
-        public void load(ContentManager content)
+        public virtual void load(ContentManager content)
         {
 
         }
 
         // Update object
-        public void update()
+        public virtual void update()
         {
 
         }
 
         // Draw object
-        public void draw()
+        public virtual void draw()
         {
 
         }
 
         // Handle collisions with map tiles
-        public void mapCollide(Tile[,] tiles)
+        public virtual void mapCollide(Tile[,] tiles)
         {
 
         }
 
         // Handle collisions with other objects in map
-        public void objectCollide(PhysObject other)
+        public virtual void objectCollide(PhysObject other)
         {
 
+        }
+
+        public Vector2 getPosition()
+        {
+            return position;
+        }
+
+        public Rectangle getHitBox()
+        {
+            return hitBox;
         }
     }
 }
