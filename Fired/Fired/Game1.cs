@@ -16,13 +16,21 @@ namespace Fired
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
+        const string GOOD_END = "The End!";
+        const string BAD_END = "The End?";
+        const string FIRED = "You're Fired";
+        const string ACCEPT = "Accept";
+        const string DECLINE = "Decline";
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        GameState gameState;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            gameState = GameState.Main;
         }
 
         /// <summary>
@@ -71,6 +79,15 @@ namespace Fired
                 this.Exit();
 
             // TODO: Add your update logic here
+            if (gameState == GameState.Main)
+            {
+            }
+            else if (gameState == GameState.Game)
+            {
+            }
+            else if (gameState == GameState.BadEnd || gameState == GameState.GoodEnd)
+            {
+            }
 
             base.Update(gameTime);
         }
@@ -84,6 +101,18 @@ namespace Fired
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            if (gameState == GameState.Main)
+            {
+            }
+            else if (gameState == GameState.Game)
+            {
+            }
+            else if (gameState == GameState.BadEnd)
+            {
+            }
+            else if (gameState == GameState.GoodEnd)
+            {
+            }
 
             base.Draw(gameTime);
         }
