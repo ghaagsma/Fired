@@ -11,12 +11,16 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Fired
 {
-    class Swat : Character
+    class SecurityGuard : Character
     {
-        public Swat(int initX, int initY, int speed) :
+        protected int destX;
+        protected int destY;
+
+        public SecurityGuard(int initX, int initY, int speed, int destX_, int destY_) :
             base(initX, initY, speed)
         {
-
+            destX = destX_;
+            destY = destY_;
         }
 
         // Load the object content
@@ -31,8 +35,8 @@ namespace Fired
             if (!exists)
                 return;
 
-            velocity.X = heroPosition.X - position.X;
-            velocity.Y = heroPosition.Y - position.Y;
+            velocity.X = position.X - heroPosition.X;
+            velocity.Y = position.Y - heroPosition.Y;
 
             velocity.Normalize();
             velocity.X *= speed;

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -13,8 +13,8 @@ namespace Fired
 {
     class Employee : Character
     {
-        public Employee(int x, int y, int speed) :
-            base(x, y, speed)
+        public Employee(int initX, int initY, int speed) :
+            base(initX, initY, speed)
         {
 
         }
@@ -26,12 +26,19 @@ namespace Fired
         }
 
         // Update object
-        public override void update(Tile[,] map, Vector2 heroPosition)
+        public void update(Tile[,] map, Vector2 heroPosition)
         {
             if (!exists)
                 return;
 
+            velocity.X = position.X - heroPosition.X;
+            velocity.Y = position.Y - heroPosition.Y;
 
+            velocity.Normalize();
+            velocity.X *= speed;
+            velocity.Y *= speed;
+
+            mapCollide(map);
         }
 
         // Handle collisions with other objects in map

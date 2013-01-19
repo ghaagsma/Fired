@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -16,8 +16,8 @@ namespace Fired
         protected KeyboardState oldState;
         protected KeyboardState newState;
 
-        public Hero(int x, int y, int speed) :
-            base(x, y, speed)
+        public Hero(int initX, int initY, int speed) :
+            base(initX, initY, speed)
         {
             hitBox = new Rectangle();
             image = new Rectangle(0, 0, 300, 300);

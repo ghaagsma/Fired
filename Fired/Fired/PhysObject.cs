@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -21,10 +21,10 @@ namespace Fired
 
         protected bool exists;          // Whether this object exists or has been destroyed
 
-        public PhysObject(int x, int y)
+        public PhysObject(int initX, int initY)
         {
-            position.X = x * Fired.TILE_SIZE;
-            position.Y = y * Fired.TILE_SIZE;
+            position.X = initX * Fired.TILE_SIZE;
+            position.Y = initY * Fired.TILE_SIZE;
             velocity.X = 0;
             velocity.Y = 0;
 

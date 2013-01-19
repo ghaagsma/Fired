@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -15,8 +15,8 @@ namespace Fired
     {
         protected int speed;
 
-        public Character(int x, int y, int speed_) :
-            base(x,y)
+        public Character(int initX, int initY, int speed_) :
+            base(initX, initY)
         {
             speed = speed_;
         }        
