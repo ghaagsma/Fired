@@ -13,12 +13,16 @@ namespace Fired
 {
     class SecurityGuard : Character
     {
+        protected int srcX;
+        protected int srcY;
         protected int destX;
         protected int destY;
 
         public SecurityGuard(int initX, int initY, int speed, int destX_, int destY_) :
             base(initX, initY, speed)
         {
+            srcX = initX;
+            srcY = initY;
             destX = destX_;
             destY = destY_;
         }
@@ -35,14 +39,28 @@ namespace Fired
             if (!exists)
                 return;
 
-            velocity.X = position.X - heroPosition.X;
-            velocity.Y = position.Y - heroPosition.Y;
+            velocity.X = destX - position.X;
+            velocity.Y = destY - position.Y;
 
             velocity.Normalize();
             velocity.X *= speed;
             velocity.Y *= speed;
 
             mapCollide(map);
+
+            // Check if guard has reached destination
+            if ((velocity.X >= 0 && position.X >= destX) || (velocity.X <= 0 && position.X <= destX))
+            {
+                if ((velocity.Y >= 0 && position.Y >= destY) || (velocity.Y <= 0 && position.Y <= destY))
+                {
+                    int tempDestX = destX;
+                    int tempDestY = destY;
+                    destX = srcX;
+                    destY = srcY;
+                    srcX = tempDestX;
+                    srcY = tempDestY;
+                }
+            }
         }
 
         // Handle collisions with other objects in map
