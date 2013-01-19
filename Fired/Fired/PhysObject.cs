@@ -17,7 +17,27 @@ namespace Fired
         Vector2 velocity;
         Rectangle hitBox;
 
-        public void mapCollide()
+        public void load(ContentManager content)
+        {
+
+        }
+
+        public void update()
+        {
+
+        }
+
+        public void draw()
+        {
+
+        }
+
+        public void mapCollide(Tile[,] tiles)
+        {
+
+        }
+
+        public void objectCollide(PhysObject other)
         {
 
         }
