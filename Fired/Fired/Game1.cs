@@ -16,6 +16,8 @@ namespace Fired
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
+        const int SCREEN_WIDTH = 800;
+        const int SCREEN_HEIGHT = 600;
         const string GOOD_END = "The End!";
         const string BAD_END = "The End?";
         const string FIRED = "You're Fired";
@@ -26,42 +28,47 @@ namespace Fired
         SpriteBatch spriteBatch;
         GameState gameState;
         KeyboardState keyboard;
+        SpriteFont font;
+        bool menuSelect;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            gameState = GameState.Main;
+            gameState = GameState.GoodEnd;
+            menuSelect = false;
+            graphics.PreferredBackBufferWidth = SCREEN_WIDTH;
+            graphics.PreferredBackBufferHeight = SCREEN_HEIGHT;
         }
 
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
-        }
-
-        protected override void UnloadContent()
-        {
-            // TODO: Unload any non ContentManager content here
+            font = Content.Load<SpriteFont>("Font");
         }
 
         protected override void Update(GameTime gameTime)
         {
-            // Allows the game to exit
             keyboard = Keyboard.GetState();
 
-            // TODO: Add your update logic here
             if (gameState == GameState.Main)
             {
+                if (keyboard.IsKeyDown(Keys.Left) || keyboard.IsKeyDown(Keys.Right))
+                {
+                    menuSelect = !menuSelect;
+                }
+
             }
             else if (gameState == GameState.Game)
             {
             }
             else if (gameState == GameState.BadEnd || gameState == GameState.GoodEnd)
             {
-                //if ();
+                if (keyboard.IsKeyDown(Keys.Enter))
+                {
+                    gameState = GameState.Main;
+                }
             }
 
             base.Update(gameTime);
@@ -69,9 +76,14 @@ namespace Fired
 
         protected override void Draw(GameTime gameTime)
         {
+            spriteBatch.Begin();
+
             if (gameState == GameState.Main)
             {
                 GraphicsDevice.Clear(Color.CornflowerBlue);
+                spriteBatch.DrawString(font, FIRED, new Vector2((SCREEN_WIDTH / 2) - (font.MeasureString(FIRED).X / 2), 50), Color.DarkRed);
+                spriteBatch.DrawString(font, ACCEPT, new Vector2((SCREEN_WIDTH / 4) - (font.MeasureString(ACCEPT).X / 2), SCREEN_HEIGHT / 2), Color.Ivory);
+                spriteBatch.DrawString(font, DECLINE, new Vector2((SCREEN_WIDTH * 3 / 4) - (font.MeasureString(DECLINE).X / 2), SCREEN_HEIGHT / 2), Color.Ivory);
             }
             else if (gameState == GameState.Game)
             {
@@ -87,6 +99,8 @@ namespace Fired
             }
 
             base.Draw(gameTime);
+
+            spriteBatch.End();
         }
     }
 }
