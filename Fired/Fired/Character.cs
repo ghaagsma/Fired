@@ -50,17 +50,17 @@ namespace Fired
                 while (position.Y < finalLocation.Y)
                 {
                     position.Y += 0.1f;
-                    tile = currentTile(position.X + tileSize, position.Y + tileSize);
+                    tile = currentTile(position.X + Fired.CHAR_SIZE, position.Y + Fired.CHAR_SIZE);
                     if (tiles[tile.Y, tile.X].type == TileType.Collision)
                     {
-                        position.Y = tiles[tile.Y, tile.X].location.Y - tileSize;
+                        position.Y = tiles[tile.Y, tile.X].location.Y - Fired.CHAR_SIZE;
                         break;
                     }
 
-                    tile = currentTile(position.X, position.Y + tileSize);
+                    tile = currentTile(position.X, position.Y + Fired.CHAR_SIZE);
                     if (tiles[tile.Y, tile.X].type == TileType.Collision)
                     {
-                        position.Y = tiles[tile.Y, tile.X].location.Y - tileSize;
+                        position.Y = tiles[tile.Y, tile.X].location.Y - Fired.CHAR_SIZE;
                         break;
                     }
                 }
@@ -69,7 +69,7 @@ namespace Fired
                 while (position.Y > finalLocation.Y)
                 {
                     position.Y -= 0.1f;
-                    tile = currentTile(position.X + tileSize, position.Y);
+                    tile = currentTile(position.X + Fired.CHAR_SIZE, position.Y);
                     if (tiles[tile.Y, tile.X].type == TileType.Collision)
                     {
                         position.Y = tiles[tile.Y, tile.X].location.Y + tileSize + 0.1f;
@@ -88,26 +88,26 @@ namespace Fired
             //Reset the y position so there are no erroneous tile collisions
             //location = finalLocation;
 
-            //Check left collisions
+            //Check right collisions
             if (velocity.X > 0)
                 while (position.X < finalLocation.X)
                 {
                     position.X += 0.1f;
-                    tile = currentTile(position.X + tileSize, position.Y + tileSize);
+                    tile = currentTile(position.X + Fired.CHAR_SIZE, position.Y + Fired.CHAR_SIZE);
                     if (tiles[tile.Y, tile.X].type == TileType.Collision)
                     {
-                        position.X = tiles[tile.Y, tile.X].location.X - tileSize;
+                        position.X = tiles[tile.Y, tile.X].location.X - Fired.CHAR_SIZE;
                         break;
                     }
 
-                    tile = currentTile(position.X + tileSize, position.Y);
+                    tile = currentTile(position.X + Fired.CHAR_SIZE, position.Y);
                     if (tiles[tile.Y, tile.X].type == TileType.Collision)
                     {
-                        position.X = tiles[tile.Y, tile.X].location.X - tileSize;
+                        position.X = tiles[tile.Y, tile.X].location.X - Fired.CHAR_SIZE;
                         break;
                     }
                 }
-            //Check right collisions
+            //Check left collisions
             else if (velocity.X < 0)
                 while (position.X > finalLocation.X)
                 {
@@ -119,7 +119,7 @@ namespace Fired
                         break;
                     }
 
-                    tile = currentTile(position.X, position.Y + tileSize);
+                    tile = currentTile(position.X, position.Y + Fired.CHAR_SIZE);
                     if (tiles[tile.Y, tile.X].type == TileType.Collision)
                     {
                         position.X = tiles[tile.Y, tile.X].location.X + tileSize + 0.1f;
