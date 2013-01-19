@@ -8,7 +8,8 @@ namespace Fired
     public enum TileType
     {
         Collision,
-        Empty
+        Empty,
+        Up
     }
 
     public enum GameState

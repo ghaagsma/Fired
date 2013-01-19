@@ -94,10 +94,10 @@ namespace Fired
                         tiles[i, j].type = TileType.Empty;
                         tiles[i, j].imageSource = new Rectangle(0, 0, Fired.SOURCE_SIZE, Fired.SOURCE_SIZE);
                     }
-                    else
+                    else if(line[j] == "U")
                     {
-                        tiles[i, j].type = TileType.Collision;
-                        tiles[i, j].imageSource = new Rectangle(0, 0, Fired.SOURCE_SIZE, Fired.SOURCE_SIZE);
+                        tiles[i, j].type = TileType.Up;
+                        tiles[i, j].imageSource = new Rectangle(Fired.SOURCE_SIZE * 2, 0, Fired.SOURCE_SIZE, Fired.SOURCE_SIZE);
                     }
                 }
             }
