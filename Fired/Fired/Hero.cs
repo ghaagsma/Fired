@@ -52,12 +52,6 @@ namespace Fired
             mapCollide(map);
         }
 
-        // Handle collisions with map tiles
-        public override void mapCollide(Tile[,] tiles)
-        {
-
-        }
-
         // Handle collisions with other objects in map
         public override void objectCollide(PhysObject other)
         {

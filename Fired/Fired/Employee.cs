@@ -18,5 +18,24 @@ namespace Fired
         {
 
         }
+
+        // Load the object content
+        public override void load(ContentManager content)
+        {
+            
+        }
+
+        // Update object
+        public override void update(GraphicsDeviceManager graphics, Tile[,] map)
+        {
+            if (!exists)
+                return;
+        }
+
+        // Handle collisions with other objects in map
+        public override void objectCollide(PhysObject other)
+        {
+
+        }
     }
 }
