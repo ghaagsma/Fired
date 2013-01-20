@@ -40,14 +40,27 @@ namespace Fired
             velocity.X = 0;
             velocity.Y = 0;
 
-            if(newState.IsKeyDown(Keys.Up))
-                velocity.Y -= 1;
             if (newState.IsKeyDown(Keys.Right))
+            {
                 velocity.X += 1;
-            if (newState.IsKeyDown(Keys.Down))
-                velocity.Y += 1;
+                image = new Rectangle(600, 0, 300, 300);
+            }
             if (newState.IsKeyDown(Keys.Left))
+            {
                 velocity.X -= 1;
+                image = new Rectangle(900, 0, 300, 300);
+            }
+
+            if (newState.IsKeyDown(Keys.Up))
+            {
+                velocity.Y -= 1;
+                image = new Rectangle(300, 0, 300, 300);
+            }
+            if (newState.IsKeyDown(Keys.Down))
+            {
+                velocity.Y += 1;
+                image = new Rectangle(0, 0, 300, 300);
+            }
 
             velocity.Normalize();
             velocity.X *= speed;

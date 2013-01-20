@@ -19,4 +19,13 @@ namespace Fired
         GoodEnd,
         Game
     }
+
+    public enum CharacterAnimationState
+    {
+        FaceFront = 0,
+        FaceBack = 1,
+        FaceRight = 2,
+        FaceLeft = 3,
+        Dead = 4
+    }
 }

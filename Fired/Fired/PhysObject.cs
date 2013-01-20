@@ -27,6 +27,7 @@ namespace Fired
             position.Y = initY * Fired.TILE_SIZE;
             velocity.X = 0;
             velocity.Y = 0;
+
             hitBox = new Rectangle(initX * Fired.TILE_SIZE, initY * Fired.TILE_SIZE, Fired.CHAR_SIZE, Fired.CHAR_SIZE);
             image = new Rectangle(0, 0, 300, 300);
 

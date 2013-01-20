@@ -14,11 +14,13 @@ namespace Fired
     abstract class Character : PhysObject
     {
         protected int speed;
+        protected CharacterAnimationState animationState;
 
         public Character(int initX, int initY, int speed_) :
             base(initX, initY)
         {
             speed = speed_;
+            animationState = CharacterAnimationState.FaceFront;
         }        
         
         //Calculate the current tile that position x,y intersects
