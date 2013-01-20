@@ -19,7 +19,7 @@ namespace Fired
 
         int level;
         Tile[,] tiles;
-        Texture2D tileset, playerImage, guardImage, employeeImage, swatImage, bossImage;
+        Texture2D tileset, playerImage, guardImage, employeeImage, swatImage, sewageImage, bossImage;
         bool levelFinished, loseGame, winGame;
         Hero hero;
         List<Employee> employees;
@@ -54,6 +54,7 @@ namespace Fired
             employeeImage = content.Load<Texture2D>("CorporateWhore");
             guardImage = content.Load<Texture2D>("SecurityGuard");
             swatImage = content.Load<Texture2D>("Swat");
+            sewageImage = content.Load<Texture2D>("SewageSucker");
             bossImage = content.Load<Texture2D>("boss");
         }
 
@@ -235,6 +236,10 @@ namespace Fired
                 sw.load(content, swatImage);
                 swat.Add(sw);
             }
+
+            //Add sewage
+
+
             sr.Close();
         }
 
