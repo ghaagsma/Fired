@@ -32,7 +32,7 @@ namespace Fired
 
         public Map()
         {
-            level = 5;
+            level = 7;
             tiles = new Tile[MAP_ROWS, MAP_COLS];
             for (int i = 0; i < MAP_ROWS; ++i)
                 for (int j = 0; j < MAP_COLS; ++j)
@@ -57,7 +57,7 @@ namespace Fired
         {
             tileset = content.Load<Texture2D>("tiles");
             playerImage = content.Load<Texture2D>("HeroStrip");
-            employeeImage = content.Load<Texture2D>("CorporateWhore");
+            employeeImage = content.Load<Texture2D>("BusinessWoman");
             guardImage = content.Load<Texture2D>("SecurityGuard");
             swatImage = content.Load<Texture2D>("Swat");
             sewageImage = content.Load<Texture2D>("SewageSucker");
@@ -114,7 +114,7 @@ namespace Fired
                     boss.RemoveAt(i);
                     i--;
                     openWindow = true;
-                    tiles[(int)windowLocation.Y, (int)windowLocation.X].imageSource = new Rectangle(Fired.SOURCE_SIZE * 8, 0, Fired.SOURCE_SIZE, Fired.SOURCE_SIZE);
+                    tiles[(int)windowLocation.X, (int)windowLocation.Y].imageSource = new Rectangle(Fired.SOURCE_SIZE * 8, 0, Fired.SOURCE_SIZE, Fired.SOURCE_SIZE);
                 }
             }
 
@@ -163,6 +163,8 @@ namespace Fired
             employees.Clear();
             swat.Clear();
             guard.Clear();
+            sucker.Clear();
+            boss.Clear();
 
             //Make file name and open file
             string fileName = "level" + level.ToString() + ".txt";
