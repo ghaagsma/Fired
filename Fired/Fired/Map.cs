@@ -34,7 +34,7 @@ namespace Fired
 
         public Map()
         {
-            level = 0;
+            level = 9;
             tiles = new Tile[MAP_ROWS, MAP_COLS];
             for (int i = 0; i < MAP_ROWS; ++i)
                 for (int j = 0; j < MAP_COLS; ++j)
