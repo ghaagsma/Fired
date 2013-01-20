@@ -11,10 +11,10 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Fired
 {
-    class SewageSucker : Character
+    class SewageSucker : PhysObject
     {
-        public SewageSucker(int initX, int initY, int speed) :
-            base(initX, initY, speed)
+        public SewageSucker(int initX, int initY) :
+            base(initX, initY)
         {
             image = new Rectangle(0, 0, 1200, 1200);
         }
@@ -23,13 +23,6 @@ namespace Fired
         public override void load(ContentManager content, Texture2D texture_)
         {
             texture = texture_;
-        }
-
-        // Update object
-        public void update(Tile[,] map, Vector2 heroPosition)
-        {
-            if (!exists)
-                return;
         }
     }
 }

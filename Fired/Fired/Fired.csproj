@@ -83,6 +83,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="SecurityGuard.cs" />
+    <Compile Include="SewageSucker.cs" />
     <Compile Include="Structs.cs" />
     <Compile Include="Swat.cs" />
   </ItemGroup>
