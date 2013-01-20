@@ -16,12 +16,15 @@ namespace Fired
         protected KeyboardState oldState;
         protected KeyboardState newState;
 
+        protected int animationChoice;
+
         public Hero(int initX, int initY, int speed) :
             base(initX, initY, speed)
         {
             hitBox = new Rectangle(initX * Fired.TILE_SIZE, initY * Fired.TILE_SIZE, Fired.CHAR_SIZE, Fired.CHAR_SIZE);
             image = new Rectangle(0, 0, 300, 300);
             oldState = Keyboard.GetState();
+            animationChoice = 0;
         }
 
         // Load the object content
@@ -36,6 +39,15 @@ namespace Fired
             if (!exists)
                 return;
 
+            int getImageFromHeight = 0;
+
+            if (animationChoice < 5)
+                getImageFromHeight = 0;
+            else if (animationChoice < 10)
+                getImageFromHeight = 300;
+            else
+                getImageFromHeight = 600;
+
             newState = Keyboard.GetState();
             velocity.X = 0;
             velocity.Y = 0;
@@ -43,28 +55,33 @@ namespace Fired
             if (newState.IsKeyDown(Keys.Right))
             {
                 velocity.X += 1;
-                image = new Rectangle(600, 0, 300, 300);
+                image = new Rectangle(600, getImageFromHeight, 300, 300);
             }
             if (newState.IsKeyDown(Keys.Left))
             {
                 velocity.X -= 1;
-                image = new Rectangle(900, 0, 300, 300);
+                image = new Rectangle(900, getImageFromHeight, 300, 300);
             }
 
             if (newState.IsKeyDown(Keys.Up))
             {
                 velocity.Y -= 1;
-                image = new Rectangle(300, 0, 300, 300);
+                image = new Rectangle(300, getImageFromHeight, 300, 300);
             }
             if (newState.IsKeyDown(Keys.Down))
             {
                 velocity.Y += 1;
-                image = new Rectangle(0, 0, 300, 300);
+                image = new Rectangle(0, getImageFromHeight, 300, 300);
             }
 
             velocity.Normalize();
             velocity.X *= speed;
             velocity.Y *= speed;
+
+            animationChoice++;
+
+            if (animationChoice > 14)
+                animationChoice = 0;
 
             mapCollide(map);
         }
