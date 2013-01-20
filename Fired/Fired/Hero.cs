@@ -17,6 +17,7 @@ namespace Fired
         protected KeyboardState newState;
 
         protected int animationChoice;
+        protected int animationSpeed;
 
         public Hero(int initX, int initY, int speed) :
             base(initX, initY, speed)
@@ -25,6 +26,7 @@ namespace Fired
             image = new Rectangle(0, 0, 300, 300);
             oldState = Keyboard.GetState();
             animationChoice = 0;
+            animationSpeed = 30;
         }
 
         // Load the object content
@@ -41,9 +43,9 @@ namespace Fired
 
             int getImageFromHeight = 0;
 
-            if (animationChoice < 5)
+            if (animationChoice < animationSpeed/3)
                 getImageFromHeight = 0;
-            else if (animationChoice < 10)
+            else if (animationChoice < 2*animationSpeed/3)
                 getImageFromHeight = 300;
             else
                 getImageFromHeight = 600;
@@ -80,7 +82,7 @@ namespace Fired
 
             animationChoice++;
 
-            if (animationChoice > 14)
+            if (animationChoice >= animationSpeed)
                 animationChoice = 0;
 
             mapCollide(map);
