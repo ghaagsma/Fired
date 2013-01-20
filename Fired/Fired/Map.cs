@@ -63,7 +63,14 @@ namespace Fired
             hero.update(tiles);
 
             for (int i = 0; i < employees.Count; ++i)
-                employees[i].update(tiles);
+            {
+                employees[i].update(tiles, hero.getPosition());
+                if (hero.getHitBox().Intersects(employees[i].getHitBox()))
+                {
+                    employees.RemoveAt(i);
+                    i--;
+                }
+            }
 
             //update swat guard
 
