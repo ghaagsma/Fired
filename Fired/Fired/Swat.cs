@@ -38,6 +38,15 @@ namespace Fired
             velocity.X *= speed;
             velocity.Y *= speed;
 
+            if (velocity.Y > 0)
+                image = new Rectangle(0, 0, 300, 300);
+            else if (velocity.Y < 0)
+                image = new Rectangle(300, 0, 300, 300);
+            else if (velocity.X > 0)
+                image = new Rectangle(600, 0, 300, 300);
+            else if (velocity.X < 0)
+                image = new Rectangle(900, 0, 300, 300);
+
             mapCollide(map);
         }
     }
