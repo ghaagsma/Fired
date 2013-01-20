@@ -25,7 +25,7 @@ namespace Fired
         List<Employee> employees;
         List<Swat> swat;
         List<SecurityGuard> guard;
-        Rectangle stairs;
+        Rectangle stairs, window;
 
         public Map()
         {
@@ -44,6 +44,7 @@ namespace Fired
             swat = new List<Swat>();
             guard = new List<SecurityGuard>();
             stairs = new Rectangle();
+            window = new Rectangle(2000, 2000, 1, 1);
         }
 
         public void LoadContent(ContentManager content)
@@ -97,10 +98,11 @@ namespace Fired
                 }
             }
 
-
+            //Check if you can go up a level
             if (employees.Count == 0 && hero.getHitBox().Intersects(stairs))
                 levelFinished = true;
                 
+            //Check 
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -161,6 +163,32 @@ namespace Fired
                         tiles[i, j].type = TileType.Up;
                         tiles[i, j].imageSource = new Rectangle(Fired.SOURCE_SIZE * 2, 0, Fired.SOURCE_SIZE, Fired.SOURCE_SIZE);
                         stairs = new Rectangle(j * Fired.TILE_SIZE, i * Fired.TILE_SIZE, Fired.TILE_SIZE, Fired.TILE_SIZE);
+                    }
+                    else if (line[j] == "B")
+                    {
+                        tiles[i, j].type = TileType.Collision;
+                        tiles[i, j].imageSource = new Rectangle(Fired.SOURCE_SIZE * 3, 0, Fired.SOURCE_SIZE, Fired.SOURCE_SIZE);
+                    }
+                    else if (line[j] == "[")
+                    {
+                        tiles[i, j].type = TileType.Collision;
+                        tiles[i, j].imageSource = new Rectangle(Fired.SOURCE_SIZE * 4, 0, Fired.SOURCE_SIZE, Fired.SOURCE_SIZE);
+                    }
+                    else if (line[j] == "=")
+                    {
+                        tiles[i, j].type = TileType.Collision;
+                        tiles[i, j].imageSource = new Rectangle(Fired.SOURCE_SIZE * 5, 0, Fired.SOURCE_SIZE, Fired.SOURCE_SIZE);
+                    }
+                    else if (line[j] == "]")
+                    {
+                        tiles[i, j].type = TileType.Collision;
+                        tiles[i, j].imageSource = new Rectangle(Fired.SOURCE_SIZE * 6, 0, Fired.SOURCE_SIZE, Fired.SOURCE_SIZE);
+                    }
+                    else if (line[j] == "+")
+                    {
+                        tiles[i, j].type = TileType.Collision;
+                        tiles[i, j].imageSource = new Rectangle(Fired.SOURCE_SIZE * 7, 0, Fired.SOURCE_SIZE, Fired.SOURCE_SIZE);
+                        window = new Rectangle(j * Fired.TILE_SIZE, i * Fired.TILE_SIZE, Fired.TILE_SIZE, Fired.TILE_SIZE);
                     }
                 }
             }
