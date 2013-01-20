@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -11,13 +11,12 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Fired
 {
-    class Employee : Character
+    class Boss : Character
     {
-        public Employee(int initX, int initY, int speed) :
+        public Boss(int initX, int initY, int speed) :
             base(initX, initY, speed)
         {
-            hitBox = new Rectangle(initX * Fired.TILE_SIZE, initY * Fired.TILE_SIZE, Fired.CHAR_SIZE, Fired.CHAR_SIZE);
-            image = new Rectangle(0, 0, 300, 300);
+
         }
 
         // Load the object content
@@ -31,15 +30,6 @@ namespace Fired
         {
             if (!exists)
                 return;
-
-            velocity.X = position.X - heroPosition.X;
-            velocity.Y = position.Y - heroPosition.Y;
-
-            velocity.Normalize();
-            velocity.X *= speed;
-            velocity.Y *= speed;
-
-            mapCollide(map);
         }
     }
 }

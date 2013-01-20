@@ -58,12 +58,6 @@ namespace Fired
 
         }
 
-        // Handle collisions with other objects in map
-        public virtual void objectCollide(PhysObject other)
-        {
-
-        }
-
         public Vector2 getPosition()
         {
             return position;

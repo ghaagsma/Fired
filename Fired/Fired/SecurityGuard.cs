@@ -62,11 +62,5 @@ namespace Fired
                 }
             }
         }
-
-        // Handle collisions with other objects in map
-        public override void objectCollide(PhysObject other)
-        {
-
-        }
     }
 }
