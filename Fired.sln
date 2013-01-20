@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C# Express 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fired", "Fired\Fired\Fired.csproj", "{3C457A1D-04CE-4376-BB7A-CCE901A15347}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "FiredContent", "Fired\FiredContent\FiredContent.contentproj", "{FC310BCD-EFD1-456F-A938-8DC024263FBC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FiredContent", "Fired\FiredContent\FiredContent.contentproj", "{FC310BCD-EFD1-456F-A938-8DC024263FBC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

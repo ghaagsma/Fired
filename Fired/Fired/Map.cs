@@ -187,7 +187,7 @@ namespace Fired
             carcass.Clear();
 
             //Make file name and open file
-            string fileName = "level" + level.ToString() + ".txt";
+            string fileName = "Content/level" + level.ToString() + ".txt";
             StreamReader sr = new StreamReader(fileName);
             string [] line;
 
