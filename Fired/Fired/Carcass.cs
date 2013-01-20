@@ -16,6 +16,7 @@ namespace Fired
         public Carcass(int initX, int initY) :
             base(initX, initY)
         {
+            hitBox = new Rectangle(initX, initY, Fired.CHAR_SIZE, Fired.CHAR_SIZE);
             image = new Rectangle(0, 0, 300, 300);
         }
 

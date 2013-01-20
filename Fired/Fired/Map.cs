@@ -19,7 +19,7 @@ namespace Fired
 
         int level;
         Tile[,] tiles;
-        Texture2D tileset, playerImage, guardImage, employeeImage, employeeImage2, swatImage, sewageImage, bossImage;
+        Texture2D tileset, playerImage, guardImage, employeeImage, employeeImage2, swatImage, sewageImage, bossImage, carcassImage;
         bool levelFinished, loseGame, winGame, openWindow;
         Hero hero;
         List<Employee> employees;
@@ -27,12 +27,14 @@ namespace Fired
         List<SecurityGuard> guard;
         List<Boss> boss;
         List<SewageSucker> sucker;
+        List<Carcass> carcass;
         Rectangle stairs, window;
         Vector2 windowLocation;
 
+
         public Map()
         {
-            level = 6;
+            level = 0;
             tiles = new Tile[MAP_ROWS, MAP_COLS];
             for (int i = 0; i < MAP_ROWS; ++i)
                 for (int j = 0; j < MAP_COLS; ++j)
@@ -49,6 +51,7 @@ namespace Fired
             guard = new List<SecurityGuard>();
             boss = new List<Boss>();
             sucker = new List<SewageSucker>();
+            carcass = new List<Carcass>();
             stairs = new Rectangle();
             window = new Rectangle(2000, 2000, 1, 1);
         }
@@ -63,6 +66,7 @@ namespace Fired
             swatImage = content.Load<Texture2D>("Swat");
             sewageImage = content.Load<Texture2D>("SewageSucker");
             bossImage = content.Load<Texture2D>("boss");
+            carcassImage = content.Load<Texture2D>("FleshHeap");
         }
 
         public void Update(ContentManager content)
@@ -78,11 +82,16 @@ namespace Fired
             //Update employees / employee player collision
             for (int i = 0; i < employees.Count; ++i)
             {
+                Carcass c;
                 employees[i].update(tiles, hero.getPosition());
                 if (hero.getHitBox().Intersects(employees[i].getHitBox()))
                 {
+                    c = new Carcass(employees[i].getHitBox().X, employees[i].getHitBox().Y);
+                    c.load(content, carcassImage);
+                    carcass.Add(c);
                     employees.RemoveAt(i);
                     i--;
+
                 }
             }
 
@@ -154,6 +163,9 @@ namespace Fired
             for (int i = 0; i < sucker.Count; ++i)
                 sucker[i].draw(spriteBatch);
 
+            for (int i = 0; i < carcass.Count; ++i)
+                carcass[i].draw(spriteBatch);
+
             hero.draw(spriteBatch);
         }
 
@@ -166,6 +178,7 @@ namespace Fired
             guard.Clear();
             sucker.Clear();
             boss.Clear();
+            carcass.Clear();
 
             //Make file name and open file
             string fileName = "level" + level.ToString() + ".txt";
@@ -231,6 +244,7 @@ namespace Fired
             hero = new Hero(int.Parse(line[0]), int.Parse(line[1]), int.Parse(line[2]));
             hero.load(content, playerImage);
 
+            Random rand = new Random();
             int count;
             //Add employee
             Employee e;
@@ -240,7 +254,10 @@ namespace Fired
             {            
                 line = sr.ReadLine().Split(' ');
                 e = new Employee(int.Parse(line[0]), int.Parse(line[1]), int.Parse(line[2]));
-                e.load(content, employeeImage);
+                if (rand.Next(2) == 1)
+                    e.load(content, employeeImage);
+                else
+                    e.load(content, employeeImage2);
                 employees.Add(e);
             }
             
@@ -301,6 +318,12 @@ namespace Fired
             levelFinished = true;
             loseGame = winGame = false;
             openWindow = false;
+            employees.Clear();
+            swat.Clear();
+            guard.Clear();
+            sucker.Clear();
+            boss.Clear();
+            carcass.Clear();
         }
 
         public bool CheckGameLose()
