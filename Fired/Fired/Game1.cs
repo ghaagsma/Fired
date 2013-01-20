@@ -77,9 +77,15 @@ namespace Fired
             {
                 map.Update(Content);
                 if (map.CheckGameLose())
+                {
                     gameState = GameState.BadEnd;
+                    map.Reset();
+                }
                 if (map.CheckGameWin())
+                {
                     gameState = GameState.GoodEnd;
+                    map.Reset();
+                }
             }
             else if (gameState == GameState.BadEnd || gameState == GameState.GoodEnd)
             {

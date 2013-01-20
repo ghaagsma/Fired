@@ -20,7 +20,7 @@ namespace Fired
         int level;
         Tile[,] tiles;
         Texture2D tileset, playerImage, guardImage, employeeImage, swatImage;
-        bool levelFinished;
+        bool levelFinished, loseGame, winGame;
         Hero hero;
         List<Employee> employees;
         List<Swat> swat;
@@ -38,6 +38,7 @@ namespace Fired
                     tiles[i, j].location = new Rectangle(j * Fired.TILE_SIZE, i * Fired.TILE_SIZE, Fired.TILE_SIZE, Fired.TILE_SIZE);
                 }
             levelFinished = true;
+            loseGame = winGame = false;
             hero = new Hero(0, 0, 3);
             employees = new List<Employee>();
             swat = new List<Swat>();
@@ -62,6 +63,7 @@ namespace Fired
 
             hero.update(tiles);
 
+            //Update employees / employee player collision
             for (int i = 0; i < employees.Count; ++i)
             {
                 employees[i].update(tiles, hero.getPosition());
@@ -72,7 +74,14 @@ namespace Fired
                 }
             }
 
-            //update swat guard
+            //Update guard / collisions
+            for (int i = 0; i < guard.Count; ++i)
+            {
+                guard[i].update(tiles, hero.getPosition());
+            }
+
+            //Update swat / player swat collision
+
 
             if (employees.Count == 0 && hero.getHitBox().Intersects(stairs))
                 levelFinished = true;
@@ -184,16 +193,17 @@ namespace Fired
         {
             level = 0;
             levelFinished = true;
+            loseGame = winGame = false;
         }
 
         public bool CheckGameLose()
         {
-            return false;
+            return loseGame;
         }
 
         public bool CheckGameWin()
         {
-            return false;
+            return winGame;
         }
     }
 }
