@@ -29,7 +29,7 @@ namespace Fired
         SpriteBatch spriteBatch;
         GameState gameState;
         KeyboardState keyboard;
-        SpriteFont font;
+        SpriteFont font, largeFont;
         bool selected;
         Map map;
 
@@ -41,7 +41,7 @@ namespace Fired
             selected = false;
             graphics.PreferredBackBufferWidth = SCREEN_WIDTH;
             graphics.PreferredBackBufferHeight = SCREEN_HEIGHT;
-            graphics.IsFullScreen = false;
+            graphics.IsFullScreen = true;
             map = new Map();
         }
 
@@ -50,6 +50,7 @@ namespace Fired
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             font = Content.Load<SpriteFont>("Font");
+            largeFont = Content.Load<SpriteFont>("LargeFont");
 
             map.LoadContent(Content);
         }
@@ -111,7 +112,7 @@ namespace Fired
             if (gameState == GameState.Main)
             {
                 GraphicsDevice.Clear(Color.CornflowerBlue);
-                spriteBatch.DrawString(font, FIRED, new Vector2((SCREEN_WIDTH / 2) - (font.MeasureString(FIRED).X / 2), 50), Color.Ivory);
+                spriteBatch.DrawString(largeFont, FIRED, new Vector2((SCREEN_WIDTH / 2) - (largeFont.MeasureString(FIRED).X / 2), 50), Color.Ivory);
                 if (!selected)
                 {
                     spriteBatch.DrawString(font, ACCEPT, new Vector2((SCREEN_WIDTH / 4) - (font.MeasureString(ACCEPT).X / 2), SCREEN_HEIGHT / 2), Color.DarkRed);
