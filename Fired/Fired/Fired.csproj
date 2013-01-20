@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Boss.cs" />
+    <Compile Include="Carcass.cs" />
     <Compile Include="Character.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="Enums.cs" />
