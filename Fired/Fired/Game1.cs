@@ -132,12 +132,12 @@ namespace Fired
             else if (gameState == GameState.BadEnd)
             {
                 GraphicsDevice.Clear(Color.IndianRed);
-                spriteBatch.DrawString(font, BAD_END, new Vector2((SCREEN_WIDTH / 2) - (font.MeasureString(BAD_END).X / 2), SCREEN_HEIGHT / 2), Color.Ivory);
+                spriteBatch.DrawString(largeFont, BAD_END, new Vector2((SCREEN_WIDTH / 2) - (largeFont.MeasureString(BAD_END).X / 2), SCREEN_HEIGHT / 2), Color.Ivory);
             }
             else if (gameState == GameState.GoodEnd)
             {
                 GraphicsDevice.Clear(Color.LawnGreen);
-                spriteBatch.DrawString(font, GOOD_END, new Vector2((SCREEN_WIDTH / 2) - (font.MeasureString(GOOD_END).X / 2), SCREEN_HEIGHT / 2), Color.Ivory);
+                spriteBatch.DrawString(largeFont, GOOD_END, new Vector2((SCREEN_WIDTH / 2) - (largeFont.MeasureString(GOOD_END).X / 2), SCREEN_HEIGHT / 2), Color.Ivory);
             }
 
             base.Draw(gameTime);
