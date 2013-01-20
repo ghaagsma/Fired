@@ -29,7 +29,7 @@ namespace Fired
 
         public Map()
         {
-            level = 2;
+            level = 0;
             tiles = new Tile[MAP_ROWS, MAP_COLS];
             for (int i = 0; i < MAP_ROWS; ++i)
                 for (int j = 0; j < MAP_COLS; ++j)
@@ -49,8 +49,8 @@ namespace Fired
         public void LoadContent(ContentManager content)
         {
             tileset = content.Load<Texture2D>("tiles");
-            playerImage = content.Load<Texture2D>("manWithKnife");
-            employeeImage = content.Load<Texture2D>("Employee");
+            playerImage = content.Load<Texture2D>("KillFace");
+            employeeImage = content.Load<Texture2D>("CorporateWhore");
             guardImage = content.Load<Texture2D>("SecurityGuard");
             swatImage = content.Load<Texture2D>("Swat");
             bossImage = content.Load<Texture2D>("boss");
