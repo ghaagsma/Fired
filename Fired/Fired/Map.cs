@@ -52,7 +52,7 @@ namespace Fired
             playerImage = content.Load<Texture2D>("manWithKnife");
             employeeImage = content.Load<Texture2D>("Employee");
             guardImage = content.Load<Texture2D>("SecurityGuard");
-            swatImage = content.Load<Texture2D>("SecurityGuard");
+            swatImage = content.Load<Texture2D>("Swat");
         }
 
         public void Update(ContentManager content)
@@ -83,11 +83,18 @@ namespace Fired
                 if (hero.getHitBox().Intersects(guard[i].getHitBox()))
                 {
                     loseGame = true;
-                    i--;
                 }
             }
 
             //Update swat / player swat collision
+            for (int i = 0; i < swat.Count; ++i)
+            {
+                swat[i].update(tiles, hero.getPosition());
+                if (hero.getHitBox().Intersects(swat[i].getHitBox()))
+                {
+                    loseGame = true;
+                }
+            }
 
 
             if (employees.Count == 0 && hero.getHitBox().Intersects(stairs))
@@ -106,13 +113,16 @@ namespace Fired
                     spriteBatch.Draw(tileset, tiles[i, j].location, tiles[i, j].imageSource, Color.White);
                 }
 
-            hero.draw(spriteBatch);
-
             for (int i = 0; i < employees.Count; ++i)
                 employees[i].draw(spriteBatch);
 
             for (int i = 0; i < guard.Count; ++i)
                 guard[i].draw(spriteBatch);
+
+            for (int i = 0; i < swat.Count; ++i)
+                swat[i].draw(spriteBatch);
+
+            hero.draw(spriteBatch);
         }
 
         //Change to the next level
