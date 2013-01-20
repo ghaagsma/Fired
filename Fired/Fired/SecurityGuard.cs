@@ -49,9 +49,9 @@ namespace Fired
             mapCollide(map);
 
             // Check if guard has reached destination
-            if ((velocity.X >= 0 && position.X >= destX) || (velocity.X <= 0 && position.X <= destX))
+            if ((velocity.X >= 0 && position.X >= destX - 1) || (velocity.X <= 0 && position.X <= destX + 1))
             {
-                if ((velocity.Y >= 0 && position.Y >= destY) || (velocity.Y <= 0 && position.Y <= destY))
+                if ((velocity.Y >= 0 && position.Y >= destY - 1) || (velocity.Y <= 0 && position.Y <= destY + 1))
                 {
                     int tempDestX = destX;
                     int tempDestY = destY;
