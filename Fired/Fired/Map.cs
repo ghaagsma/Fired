@@ -51,6 +51,8 @@ namespace Fired
             tileset = content.Load<Texture2D>("tiles");
             playerImage = content.Load<Texture2D>("manWithKnife");
             employeeImage = content.Load<Texture2D>("Employee");
+            guardImage = content.Load<Texture2D>("SecurityGuard");
+            swatImage = content.Load<Texture2D>("SecurityGuard");
         }
 
         public void Update(ContentManager content)
@@ -78,6 +80,11 @@ namespace Fired
             for (int i = 0; i < guard.Count; ++i)
             {
                 guard[i].update(tiles, hero.getPosition());
+                if (hero.getHitBox().Intersects(guard[i].getHitBox()))
+                {
+                    loseGame = true;
+                    i--;
+                }
             }
 
             //Update swat / player swat collision
@@ -103,6 +110,9 @@ namespace Fired
 
             for (int i = 0; i < employees.Count; ++i)
                 employees[i].draw(spriteBatch);
+
+            for (int i = 0; i < guard.Count; ++i)
+                guard[i].draw(spriteBatch);
         }
 
         //Change to the next level
@@ -162,7 +172,7 @@ namespace Fired
                 e.load(content, employeeImage);
                 employees.Add(e);
             }
-            /*
+            
             //Add guards
             SecurityGuard s;
             line = sr.ReadLine().Split(' ');
@@ -171,10 +181,10 @@ namespace Fired
             {
                 line = sr.ReadLine().Split(' ');
                 s = new SecurityGuard(int.Parse(line[0]), int.Parse(line[1]), int.Parse(line[2]), int.Parse(line[3]), int.Parse(line[4]));
-                s.load(content);
+                s.load(content, guardImage);
                 guard.Add(s);
             }
-
+            
             //Add swat
             Swat sw;
             line = sr.ReadLine().Split(' ');
@@ -183,9 +193,9 @@ namespace Fired
             {
                 line = sr.ReadLine().Split(' ');
                 sw = new Swat(int.Parse(line[0]), int.Parse(line[1]), int.Parse(line[2]));
-                sw.load(content);
+                sw.load(content, swatImage);
                 swat.Add(sw);
-            }*/
+            }
             sr.Close();
         }
 
