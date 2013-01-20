@@ -30,7 +30,7 @@ namespace Fired
         List<Carcass> carcass;
         Rectangle stairs, window;
         Vector2 windowLocation;
-        SoundEffect scream, slurp;
+        SoundEffect scream, slurp, thunk, windowSmash;
 
 
         public Map()
@@ -70,6 +70,8 @@ namespace Fired
             carcassImage = content.Load<Texture2D>("FleshHeap");
             scream = content.Load<SoundEffect>("WilhelmScream");
             slurp = content.Load<SoundEffect>("Slurp");
+            thunk = content.Load<SoundEffect>("thunk");
+            windowSmash = content.Load<SoundEffect>("break");
         }
 
         public void Update(ContentManager content)
@@ -136,11 +138,17 @@ namespace Fired
 
             //Check if you can go up a level
             if (employees.Count == 0 && hero.getHitBox().Intersects(stairs))
+            {
+                thunk.Play();
                 levelFinished = true;
+            }
                 
             //Check player intersect with open window
             if (hero.getHitBox().Intersects(window) && openWindow)
+            {
+                windowSmash.Play();
                 winGame = true;
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -176,9 +184,11 @@ namespace Fired
         }
 
         //Change to the next level
-        void LoadNextLevel(ContentManager content)
+        public void LoadNextLevel(ContentManager content)
         {
             level++;
+            if (level > 20)
+                return;
             employees.Clear();
             swat.Clear();
             guard.Clear();

@@ -79,6 +79,10 @@ namespace Fired
             }
             else if (gameState == GameState.Game)
             {
+                if (keyboard.IsKeyDown(Keys.Tab) && Keyboard.GetState().IsKeyUp(Keys.Tab))
+                {
+                    map.LoadNextLevel(Content);
+                }
                 map.Update(Content);
                 if (map.CheckGameLose())
                 {
