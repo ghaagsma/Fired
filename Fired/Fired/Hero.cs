@@ -26,7 +26,7 @@ namespace Fired
             image = new Rectangle(0, 0, 300, 300);
             oldState = Keyboard.GetState();
             animationChoice = 0;
-            animationSpeed = 30;
+            animationSpeed = 40;
         }
 
         // Load the object content
@@ -43,12 +43,14 @@ namespace Fired
 
             int getImageFromHeight = 0;
 
-            if (animationChoice < animationSpeed/3)
+            if (animationChoice < animationSpeed / 4)
                 getImageFromHeight = 0;
-            else if (animationChoice < 2*animationSpeed/3)
+            else if (animationChoice < 2 * animationSpeed / 4)
                 getImageFromHeight = 300;
-            else
+            else if (animationChoice < 3 * animationSpeed / 4)
                 getImageFromHeight = 600;
+            else
+                getImageFromHeight = 300;
 
             newState = Keyboard.GetState();
             velocity.X = 0;
