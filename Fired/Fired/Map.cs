@@ -30,7 +30,7 @@ namespace Fired
         List<Carcass> carcass;
         Rectangle stairs, window;
         Vector2 windowLocation;
-        SoundEffect scream;
+        SoundEffect scream, slurp;
 
 
         public Map()
@@ -69,6 +69,7 @@ namespace Fired
             bossImage = content.Load<Texture2D>("boss");
             carcassImage = content.Load<Texture2D>("FleshHeap");
             scream = content.Load<SoundEffect>("WilhelmScream");
+            slurp = content.Load<SoundEffect>("Slurp");
         }
 
         public void Update(ContentManager content)
@@ -127,6 +128,7 @@ namespace Fired
                 {
                     boss.RemoveAt(i);
                     i--;
+                    scream.Play();
                     openWindow = true;
                     tiles[(int)windowLocation.X, (int)windowLocation.Y].imageSource = new Rectangle(Fired.SOURCE_SIZE * 8, 0, Fired.SOURCE_SIZE, Fired.SOURCE_SIZE);
                 }
@@ -311,6 +313,7 @@ namespace Fired
                 su = new SewageSucker(int.Parse(line[0]), int.Parse(line[1]));
                 su.load(content, sewageImage);
                 sucker.Add(su);
+                slurp.Play();
             }
 
             sr.Close();
