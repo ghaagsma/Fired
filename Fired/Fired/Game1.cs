@@ -44,6 +44,7 @@ namespace Fired
             selected = false;
             graphics.PreferredBackBufferWidth = SCREEN_WIDTH;
             graphics.PreferredBackBufferHeight = SCREEN_HEIGHT;
+            graphics.IsFullScreen = false;
             map = new Map();
         }
 
