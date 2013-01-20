@@ -49,7 +49,7 @@ namespace Fired
         public void LoadContent(ContentManager content)
         {
             tileset = content.Load<Texture2D>("tiles");
-            playerImage = content.Load<Texture2D>("KillFace");
+            playerImage = content.Load<Texture2D>("HeroFrontView");
             employeeImage = content.Load<Texture2D>("CorporateWhore");
             guardImage = content.Load<Texture2D>("SecurityGuard");
             swatImage = content.Load<Texture2D>("Swat");
