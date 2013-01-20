@@ -16,6 +16,7 @@ namespace Fired
         public SewageSucker(int initX, int initY) :
             base(initX, initY)
         {
+            hitBox = new Rectangle(initX * Fired.TILE_SIZE, initY * Fired.TILE_SIZE, 155, 175);
             image = new Rectangle(0, 0, 1200, 1200);
         }
 

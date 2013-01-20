@@ -19,7 +19,7 @@ namespace Fired
 
         int level;
         Tile[,] tiles;
-        Texture2D tileset, playerImage, guardImage, employeeImage, swatImage, sewageImage, bossImage;
+        Texture2D tileset, playerImage, guardImage, employeeImage, employeeImage2, swatImage, sewageImage, bossImage;
         bool levelFinished, loseGame, winGame, openWindow;
         Hero hero;
         List<Employee> employees;
@@ -32,7 +32,7 @@ namespace Fired
 
         public Map()
         {
-            level = 7;
+            level = 6;
             tiles = new Tile[MAP_ROWS, MAP_COLS];
             for (int i = 0; i < MAP_ROWS; ++i)
                 for (int j = 0; j < MAP_COLS; ++j)
@@ -58,6 +58,7 @@ namespace Fired
             tileset = content.Load<Texture2D>("tiles");
             playerImage = content.Load<Texture2D>("HeroStrip");
             employeeImage = content.Load<Texture2D>("BusinessWoman");
+            employeeImage2 = content.Load<Texture2D>("BusinessMan");
             guardImage = content.Load<Texture2D>("SecurityGuard");
             swatImage = content.Load<Texture2D>("Swat");
             sewageImage = content.Load<Texture2D>("SewageSucker");
@@ -287,7 +288,7 @@ namespace Fired
             {
                 line = sr.ReadLine().Split(' ');
                 su = new SewageSucker(int.Parse(line[0]), int.Parse(line[1]));
-                su.load(content, bossImage);
+                su.load(content, sewageImage);
                 sucker.Add(su);
             }
 
@@ -299,6 +300,7 @@ namespace Fired
             level = 0;
             levelFinished = true;
             loseGame = winGame = false;
+            openWindow = false;
         }
 
         public bool CheckGameLose()
