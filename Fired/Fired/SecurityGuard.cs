@@ -66,9 +66,10 @@ namespace Fired
                 image = new Rectangle(0, 0, 300, 300);
             else if (velocity.Y < 0)
                 image = new Rectangle(300, 0, 300, 300);
-            else if (velocity.X > 0)
+
+            if (velocity.X > 0 && Math.Abs(velocity.X) > Math.Abs(velocity.Y))
                 image = new Rectangle(600, 0, 300, 300);
-            else if (velocity.X < 0)
+            else if (velocity.X < 0 && Math.Abs(velocity.X) > Math.Abs(velocity.Y))
                 image = new Rectangle(900, 0, 300, 300);
         }
     }
