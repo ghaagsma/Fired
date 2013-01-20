@@ -19,7 +19,7 @@ namespace Fired
 
         int level;
         Tile[,] tiles;
-        Texture2D tileset, playerImage, guardImage, employeeImage, swatImage;
+        Texture2D tileset, playerImage, guardImage, employeeImage, swatImage, bossImage;
         bool levelFinished, loseGame, winGame;
         Hero hero;
         List<Employee> employees;
@@ -29,7 +29,7 @@ namespace Fired
 
         public Map()
         {
-            level = 0;
+            level = 2;
             tiles = new Tile[MAP_ROWS, MAP_COLS];
             for (int i = 0; i < MAP_ROWS; ++i)
                 for (int j = 0; j < MAP_COLS; ++j)
@@ -53,6 +53,7 @@ namespace Fired
             employeeImage = content.Load<Texture2D>("Employee");
             guardImage = content.Load<Texture2D>("SecurityGuard");
             swatImage = content.Load<Texture2D>("Swat");
+            bossImage = content.Load<Texture2D>("boss");
         }
 
         public void Update(ContentManager content)
