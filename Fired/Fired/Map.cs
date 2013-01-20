@@ -51,7 +51,7 @@ namespace Fired
         {
             tileset = content.Load<Texture2D>("tiles");
             playerImage = content.Load<Texture2D>("HeroStrip");
-            employeeImage = content.Load<Texture2D>("CorporateWhore");
+            employeeImage = content.Load<Texture2D>("BusinessWoman");
             guardImage = content.Load<Texture2D>("SecurityGuard");
             swatImage = content.Load<Texture2D>("Swat");
             sewageImage = content.Load<Texture2D>("SewageSucker");

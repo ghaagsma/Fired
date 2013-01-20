@@ -1,0 +1,21 @@
+W W W W W W W W W W W W W W W W W W W W
+W . . . . . . . . . . . . . . . . . U W
+W . . . . . . . . . . . . . . . . . . W
+W . . . . . . . . . . . . . . . . . . W
+W . . . . . . W W W W W W . . . . . . W
+W . . . . . . W . . . . W . . . . . . W
+W . . . . . . W . . . . W . . . . . . W
+W . . . . . . W . . . . W . . . . . . W
+W . . . . . . W . . . . W . . . . . . W
+W . . . . . . W W W W W W . . . . . . W
+W . . . . . . . . . . . . . . . . . . W
+W . . . . . . . . . . . . . . . . . . W
+W . . . . . . . . . . . . . . . . . . W
+W . . . . . . . . . . . . . . . . . . W
+W W W W W W W W W W W W W W W W W W W W
+& Player
+1 13 1
+% Coworker 0
+# SecurityGuard 0
+@ Swat 0
++ Boss 0
