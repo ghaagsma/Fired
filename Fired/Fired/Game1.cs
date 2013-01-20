@@ -56,6 +56,11 @@ namespace Fired
 
         protected override void Update(GameTime gameTime)
         {
+            if (keyboard.IsKeyDown(Keys.Escape) && Keyboard.GetState().IsKeyUp(Keys.Escape))
+            {
+                this.Exit();
+            }
+
             if (gameState == GameState.Main)
             {
                 if (keyboard.IsKeyDown(Keys.Enter) && Keyboard.GetState().IsKeyUp(Keys.Enter))
