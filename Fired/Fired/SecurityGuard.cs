@@ -21,10 +21,10 @@ namespace Fired
         public SecurityGuard(int initX, int initY, int speed, int destX_, int destY_) :
             base(initX, initY, speed)
         {
-            srcX = initX;
-            srcY = initY;
-            destX = destX_;
-            destY = destY_;
+            srcX = initX * Fired.TILE_SIZE;
+            srcY = initY * Fired.TILE_SIZE;
+            destX = destX_ * Fired.TILE_SIZE;
+            destY = destY_ * Fired.TILE_SIZE;
         }
 
         // Load the object content
