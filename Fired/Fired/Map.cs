@@ -30,6 +30,7 @@ namespace Fired
         List<Carcass> carcass;
         Rectangle stairs, window;
         Vector2 windowLocation;
+        SoundEffect scream;
 
 
         public Map()
@@ -67,6 +68,7 @@ namespace Fired
             sewageImage = content.Load<Texture2D>("SewageSucker");
             bossImage = content.Load<Texture2D>("boss");
             carcassImage = content.Load<Texture2D>("FleshHeap");
+            scream = content.Load<SoundEffect>("WilhelmScream");
         }
 
         public void Update(ContentManager content)
@@ -91,7 +93,7 @@ namespace Fired
                     carcass.Add(c);
                     employees.RemoveAt(i);
                     i--;
-
+                    scream.Play();
                 }
             }
 
@@ -102,6 +104,7 @@ namespace Fired
                 if (hero.getHitBox().Intersects(guard[i].getHitBox()))
                 {
                     loseGame = true;
+                    scream.Play();
                 }
             }
 
@@ -112,6 +115,7 @@ namespace Fired
                 if (hero.getHitBox().Intersects(swat[i].getHitBox()))
                 {
                     loseGame = true;
+                    scream.Play();
                 }
             }
 
