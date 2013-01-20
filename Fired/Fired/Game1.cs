@@ -11,9 +11,6 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Fired
 {
-    /// <summary>
-    /// This is the main type for your game
-    /// </summary>
     public class Fired : Microsoft.Xna.Framework.Game
     {
         public const int SOURCE_SIZE = 100;
